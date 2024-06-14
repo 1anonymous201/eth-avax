@@ -1,0 +1,42 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.6.12 <0.9.0;
+
+//import Hardhat console for debugging
+import "hardhat/console.sol";
+
+contract VotingEligibility {
+  // Declare a public state variable of type uint to store the person's age
+  uint public personAge;
+
+  //Function to set the age, taking a uint as an argument
+  function setAge(uint _age) public{
+    personAge = _age;
+
+    //log the new age setting action
+    console.log("age set to:", _age);
+    }
+  // function using assert to check if personAge is at least 18
+  function testAssert() public view {
+    assert(personAge >= 18);
+    // log if the assertion passes
+    console.log("you are eliglible to vote.");
+  }
+  //function using require to check if personAge is at least 18
+  function testrequire() public view {
+    require(personAge >= 18, "you must be atleast 18 years old to vote.");
+  // log if the requirement passes
+  console.log("you are eligible to vote.");
+  }
+  //function using if-else nd revert to check if personAge is at least 18
+
+  function testrevert() public view {
+    if (personAge >= 18 ){
+      //log if the condition passes
+      console.log("you are eligible to vote. ");
+    }
+    else {
+      //revert with an error message if the condition fails
+      revert("you must be at least 18 years old to vote");
+    }
+  } 
+}
